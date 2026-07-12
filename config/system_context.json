@@ -1,0 +1,21 @@
+﻿{
+    "project": "AI_Model_Hub",
+    "description": "Local multi-agent AI development platform",
+    "current_phase": "Command Gateway",
+    "development_mode": true,
+    "available_agents": [
+        "architect",
+        "coder",
+        "researcher",
+        "reviewer",
+        "tester",
+        "documentation",
+        "vision"
+    ],
+    "capabilities": [
+        "model routing",
+        "agent orchestration",
+        "VS Code integration",
+        "local Ollama execution"
+    ]
+}

@@ -1,0 +1,15 @@
+﻿{
+    "project": "AI_Model_Hub",
+    "version": "1.0",
+    "mode": "development",
+    "autonomy_level": "controlled",
+    "logging": {
+        "enabled": true,
+        "level": "normal"
+    },
+    "safety": {
+        "require_snapshots": true,
+        "require_validation": true,
+        "require_approval_for_risky_actions": true
+    }
+}

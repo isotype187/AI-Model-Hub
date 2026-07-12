@@ -1,0 +1,67 @@
+﻿agents:
+
+  architect:
+    model: qwen3:14b
+    role: System architecture and planning
+    category: reasoning
+    capabilities:
+      - architecture
+      - planning
+      - design
+
+
+  coder:
+    model: qwen3-coder:30b
+    role: Code creation and implementation
+    category: coding
+    capabilities:
+      - python
+      - scripts
+      - debugging
+
+
+  researcher:
+    model: qwen3:14b
+    role: Investigation and deep reasoning
+    category: reasoning
+    capabilities:
+      - analysis
+      - comparison
+      - research
+
+
+  reviewer:
+    model: qwen2.5-coder:14b
+    role: Code review and auditing
+    category: coding
+    capabilities:
+      - review
+      - bugs
+      - quality
+
+
+  tester:
+    model: qwen3:14b
+    role: Testing and validation
+    category: testing
+    capabilities:
+      - testing
+      - validation
+
+
+  documentation:
+    model: llama3.2:latest
+    role: Documentation generation
+    category: writing
+    capabilities:
+      - docs
+      - explanations
+
+
+  vision:
+    model: llava:latest
+    role: Image analysis
+    category: vision
+    capabilities:
+      - screenshots
+      - images

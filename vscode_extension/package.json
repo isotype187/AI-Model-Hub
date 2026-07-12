@@ -1,0 +1,21 @@
+﻿{
+    "name": "ai-model-hub-bridge",
+    "displayName": "AI Model Hub Bridge",
+    "description": "Bridge between VS Code and AI_Model_Hub",
+    "version": "0.0.1",
+    "publisher": "local",
+    "engines": {
+        "vscode": "^1.90.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./extension.js",
+    "contributes": {},
+    "scripts": {
+        "package": "vsce package"
+    }
+}

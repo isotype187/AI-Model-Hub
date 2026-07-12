@@ -1,0 +1,7 @@
+﻿requests
+huggingface_hub
+psutil
+pynput
+pystray
+Pillow
+

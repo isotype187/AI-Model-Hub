@@ -1,0 +1,53 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code
+.vscode/
+
+# Logs and runtime data
+logs/
+agent_logs/
+history/
+*.log
+
+# Backups and snapshots
+backups/
+snapshots/
+ollama_cleanup_backups/
+
+# Build output
+build/
+dist/
+
+# Temporary/generated
+*.tmp
+*.bak
+
+# Local environment files
+.env
+.env.*
+
+# Large/generated data
+data/
+checkpoints/
+diagnostic_parts/
+.continue/
+
+# Generated dependencies
+vscode_extension/node_modules/
+
+# Runtime output
+bridge/responses/
+
+# Internal backups
+*.backup*
+*.pre_*
+*_BEFORE*
+*_WORKING*
+
+# Migration artifacts
+tools/ollama_manager/backup/
+tools/ollama_manager/migration_log.txt

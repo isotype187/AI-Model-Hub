@@ -1,0 +1,24 @@
+﻿OLLAMA HEALTH REPORT
+===================
+
+Date:
+07/09/2026 18:19:37
+
+OLLAMA_MODELS:
+D:\AI\Models\ollama
+
+Processes:
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName                                                                                   
+-------  ------    -----      -----     ------     --  -- -----------                                                                                   
+    548      28    98580      50004       0.34   2624   1 ollama                                                                                        
+
+
+
+
+Port:
+  TCP    127.0.0.1:11434        0.0.0.0:0              LISTENING       2624   TCP    127.0.0.1:11434        127.0.0.1:63511        ESTABLISHED     2624   TCP    127.0.0.1:63511        127.0.0.1:11434        ESTABLISHED     28632
+
+Models:
+NAME                       ID              SIZE      MODIFIED    qwen3-coder:latest         06c1097efce0    18 GB     2 days ago     deepseek-r1:32b            edba8017331d    19 GB     2 days ago     qwen3:30b                  ad815644918f    18 GB     2 days ago     qwen3:14b                  bdbd181c33f2    9.3 GB    2 days ago     qwen3-coder:30b            06c1097efce0    18 GB     2 days ago     qwen2.5-coder:14b          9ec8897f747e    9.0 GB    2 days ago     nomic-embed-text:latest    0a109f422b47    274 MB    3 days ago     llava:latest               8dd30f6b0cb1    4.7 GB    4 days ago     deepseek-coder:latest      3ddd2d3fc8d2    776 MB    4 days ago     mistral:latest             6577803aa9a0    4.4 GB    4 days ago     llama3.2:latest            a80c4f17acd5    2.0 GB    4 days ago     codellama:latest           8fdf8f752f6e    3.8 GB    4 days ago     phi3:latest                4f2222927938    2.2 GB    4 days ago     llama3.1:latest            46e0c10c039e    4.9 GB    4 days ago    
+

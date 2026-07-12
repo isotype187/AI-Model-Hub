@@ -1,0 +1,99 @@
+﻿{
+    "models": [
+        {
+            "name": "Qwen3 Coder 30B",
+            "ollama": "qwen3-coder:30b",
+            "category": "coding",
+            "priority": 10,
+            "context": 32768,
+            "tags": [
+                "python",
+                "javascript",
+                "debug",
+                "software",
+                "coding"
+            ],
+            "roles": [
+                "chat",
+                "edit",
+                "apply"
+            ]
+        },
+        {
+            "name": "Qwen2.5 Coder 14B",
+            "ollama": "qwen2.5-coder:14b",
+            "category": "coding",
+            "priority": 8,
+            "context": 32768,
+            "tags": [
+                "autocomplete",
+                "small coding",
+                "scripts"
+            ],
+            "roles": [
+                "autocomplete",
+                "chat"
+            ]
+        },
+        {
+            "name": "DeepSeek R1 32B",
+            "ollama": "deepseek-r1:32b",
+            "category": "reasoning",
+            "priority": 10,
+            "context": 65536,
+            "tags": [
+                "reasoning",
+                "planning",
+                "architecture",
+                "analysis"
+            ],
+            "roles": [
+                "chat"
+            ]
+        },
+        {
+            "name": "Qwen3 30B",
+            "ollama": "qwen3:30b",
+            "category": "general",
+            "priority": 9,
+            "context": 32768,
+            "tags": [
+                "assistant",
+                "writing",
+                "general"
+            ],
+            "roles": [
+                "chat",
+                "edit"
+            ]
+        },
+        {
+            "name": "LLaVA Vision",
+            "ollama": "llava:latest",
+            "category": "vision",
+            "priority": 8,
+            "context": 8192,
+            "tags": [
+                "images",
+                "screenshots",
+                "vision"
+            ],
+            "roles": [
+                "chat"
+            ]
+        },
+        {
+            "name": "Nomic Embeddings",
+            "ollama": "nomic-embed-text:latest",
+            "category": "embedding",
+            "priority": 10,
+            "context": 8192,
+            "tags": [
+                "memory",
+                "search",
+                "documents"
+            ],
+            "roles": []
+        }
+    ]
+}

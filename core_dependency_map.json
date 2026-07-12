@@ -1,0 +1,247 @@
+{
+  "agent_factory.py": [
+    "autogen_agentchat.agents",
+    "autogen_ext.models.ollama",
+    "tools.file_tools",
+    "tools.git_tools",
+    "yaml"
+  ],
+  "agent_registry.py": [
+    "datetime"
+  ],
+  "api_server.py": [
+    "flask",
+    "datetime",
+    "uuid",
+    "core.bridge"
+  ],
+  "autostart.py": [
+    "os",
+    "sys"
+  ],
+  "boot.py": [
+    "os",
+    "core.config"
+  ],
+  "bridge.py": [
+    "datetime",
+    "pathlib",
+    "json",
+    "core.supervisor",
+    "core.command"
+  ],
+  "cache.py": [
+    "time"
+  ],
+  "catalog.py": [
+    "core.discovery",
+    "core.db"
+  ],
+  "categories.py": [],
+  "command.py": [
+    "datetime"
+  ],
+  "config.py": [
+    "json",
+    "os"
+  ],
+  "db.py": [
+    "sqlite3"
+  ],
+  "discovery.py": [
+    "requests",
+    "core.ollama"
+  ],
+  "display.py": [
+    "textwrap"
+  ],
+  "downloader.py": [],
+  "favorites.py": [
+    "os",
+    "json"
+  ],
+  "gguf.py": [],
+  "github.py": [],
+  "hardware.py": [
+    "psutil",
+    "subprocess"
+  ],
+  "huggingface.py": [],
+  "identity.py": [],
+  "inspector.py": [
+    "core.hardware",
+    "core.categories"
+  ],
+  "installer.py": [
+    "os",
+    "threading",
+    "subprocess",
+    "huggingface_hub"
+  ],
+  "logger.py": [],
+  "logs.py": [
+    "os",
+    "datetime"
+  ],
+  "manager.py": [
+    "core.agent_factory"
+  ],
+  "memory.py": [
+    "json",
+    "pathlib"
+  ],
+  "mouse_agent.py": [
+    "os",
+    "subprocess",
+    "sys"
+  ],
+  "ollama.py": [
+    "subprocess"
+  ],
+  "orchestrator.py": [
+    "core.agent_factory"
+  ],
+  "pipeline.py": [
+    "datetime",
+    "requests",
+    "time"
+  ],
+  "project_engine.py": [
+    "pathlib",
+    "datetime",
+    "json",
+    "shutil",
+    "subprocess",
+    "uuid"
+  ],
+  "queue.py": [
+    "queue",
+    "threading",
+    "time",
+    "core.installer",
+    "core.logs"
+  ],
+  "recommender.py": [
+    "core.hardware"
+  ],
+  "resume.py": [
+    "os",
+    "json"
+  ],
+  "router.py": [
+    "pathlib",
+    "datetime"
+  ],
+  "search.py": [],
+  "server.py": [
+    "flask",
+    "core.bridge",
+    "datetime",
+    "pathlib"
+  ],
+  "status.py": [
+    "os",
+    "subprocess"
+  ],
+  "supervisor.py": [
+    "pathlib",
+    "datetime",
+    "re",
+    "asyncio",
+    "uuid",
+    "autogen_agentchat.messages",
+    "autogen_core",
+    "core.router",
+    "core.identity",
+    "core.orchestrator",
+    "core.vscode_bridge",
+    "core.project_engine"
+  ],
+  "supervisor_backup_before_api.py": [
+    "pathlib",
+    "datetime",
+    "subprocess",
+    "core.router"
+  ],
+  "supervisor_backup_before_autogen_fix.py": [
+    "pathlib",
+    "datetime",
+    "requests",
+    "re",
+    "core.router",
+    "core.identity",
+    "core.orchestrator",
+    "core.vscode_bridge"
+  ],
+  "supervisor_backup_before_identity_fix.py": [
+    "pathlib",
+    "datetime",
+    "subprocess",
+    "requests",
+    "core.router"
+  ],
+  "supervisor_before_final_autogen_fix.py": [
+    "pathlib",
+    "datetime",
+    "requests",
+    "re",
+    "core.router",
+    "core.identity",
+    "core.orchestrator",
+    "core.vscode_bridge"
+  ],
+  "supervisor_CACHED_WORKING.py": [
+    "pathlib",
+    "datetime",
+    "re",
+    "asyncio",
+    "autogen_agentchat.messages",
+    "autogen_core",
+    "core.router",
+    "core.identity",
+    "core.orchestrator",
+    "core.vscode_bridge"
+  ],
+  "supervisor_STATUS_BEFORE.py": [
+    "pathlib",
+    "datetime",
+    "re",
+    "asyncio",
+    "autogen_agentchat.messages",
+    "autogen_core",
+    "core.router",
+    "core.identity",
+    "core.orchestrator",
+    "core.vscode_bridge"
+  ],
+  "supervisor_WORKING.py": [
+    "pathlib",
+    "datetime",
+    "re",
+    "asyncio",
+    "autogen_agentchat.messages",
+    "autogen_core",
+    "core.router",
+    "core.identity",
+    "core.orchestrator",
+    "core.vscode_bridge"
+  ],
+  "tray.py": [
+    "threading",
+    "pystray",
+    "PIL",
+    "sys"
+  ],
+  "updater.py": [],
+  "vscode_bridge.py": [
+    "pathlib",
+    "datetime",
+    "json",
+    "uuid"
+  ],
+  "workers.py": [
+    "threading",
+    "queue"
+  ],
+  "__init__.py": []
+}

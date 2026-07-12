@@ -1,0 +1,411 @@
+> def log(message):
+  
+      logging.info(
+>         f"{datetime.now()} | {message}"
+      )
+  
+  
+  
+> def ollama_models():
+  
+      try:
+  
+>         response = requests.get(
+              "http://127.0.0.1:11434/api/tags",
+              timeout=10
+          )
+  
+>         data = response.json()
+  
+          return data.get(
+              "models",
+      except Exception as e:
+  
+          log(
+>             f"OLLAMA MODEL ERROR {e}"
+          )
+  
+          return []
+  
+      discovered = []
+  
+>     for model in ollama_models():
+  
+          discovered.append(
+              {
+                  "id":model.get("name"),
+                  "object":"model",
+>                 "owned_by":"AI Hub Ollama",
+                  "size":model.get("size"),
+                  "modified":model.get("modified_at")
+              }
+  
+      data = request.json or {}
+  
+>     messages = data.get(
+>         "messages",
+          []
+      )
+  
+  
+      prompt = ""
+  
+>     for message in messages:
+  
+          prompt += (
+>             message.get("role","")
+              +
+              ": "
+              +
+>             message.get("content","")
+              +
+              "\n"
+          )
+  
+      if isinstance(result,dict):
+  
+>         output = result.get(
+>             "output",
+              str(result)
+          )
+  
+  
+      else:
+  
+>         output = str(result)
+  
+          selected = {}
+  
+  
+      return jsonify(
+          {
+>             "id":"aihub-response",
+              "object":"chat.completion",
+              "choices":[
+                  {
+                      "index":0,
+>                     "message":
+                      {
+                          "role":"assistant",
+>                         "content":output
+                      },
+                      "finish_reason":"stop"
+                  }
+
+
+(.venv) PS D:\AI_Model_Hub> > def log(message):
+message : The term 'message' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the 
+path is correct and try again.
+At line:1 char:11
++ > def log(message):
++           ~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (message:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>       logging.info(
+>> >         f"{datetime.now()} | {message}"
+>>       )
+> : The term '>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is 
+correct and try again.
+At line:2 char:1
++ >         f"{datetime.now()} | {message}"
++ ~
+    + CategoryInfo          : ObjectNotFound: (>:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub> > def ollama_models():
+At line:1 char:21
++ > def ollama_models():
++                     ~
+An expression was expected after '('.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : ExpectedExpression
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>       try:
+try: : The term 'try:' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is 
+correct and try again.
+At line:1 char:7
++       try:
++       ~~~~
+    + CategoryInfo          : ObjectNotFound: (try::String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub> >         response = requests.get(
+>>               "http://127.0.0.1:11434/api/tags",
+>>               timeout=10
+At line:2 char:49
++               "http://127.0.0.1:11434/api/tags",
++                                                 ~
+Missing expression after ','.
+At line:3 char:15
++               timeout=10
++               ~~~~~~~~~~
+Unexpected token 'timeout=10' in expression or statement.
+At line:2 char:49
++               "http://127.0.0.1:11434/api/tags",
++                                                 ~
+Missing closing ')' in expression.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingExpressionAfterToken
+ 
+(.venv) PS D:\AI_Model_Hub>           )
+At line:1 char:11
++           )
++           ~
+Unexpected token ')' in expression or statement.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub> >         data = response.json()
+At line:1 char:32
++ >         data = response.json()
++                                ~
+An expression was expected after '('.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : ExpectedExpression
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>           return data.get(
+>>               "models",
+>>       except Exception as e:
+At line:2 char:24
++               "models",
++                        ~
+Missing expression after ','.
+At line:3 char:7
++       except Exception as e:
++       ~~~~~~
+Unexpected token 'except' in expression or statement.
+At line:2 char:24
++               "models",
++                        ~
+Missing closing ')' in expression.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingExpressionAfterToken
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>           log(
+>> >             f"OLLAMA MODEL ERROR {e}"
+>>           )
+> : The term '>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is 
+correct and try again.
+At line:2 char:1
++ >             f"OLLAMA MODEL ERROR {e}"
++ ~
+    + CategoryInfo          : ObjectNotFound: (>:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>           return []
+At line:1 char:19
++           return []
++                   ~
+Missing type name after '['.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingTypename
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>       discovered = []
+discovered : The term 'discovered' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that 
+the path is correct and try again.
+At line:1 char:7
++       discovered = []
++       ~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (discovered:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub> >     for model in ollama_models():
+At line:1 char:34
++ >     for model in ollama_models():
++                                  ~
+An expression was expected after '('.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : ExpectedExpression
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>           discovered.append(
+>>               {
+>>                   "id":model.get("name"),
+>>                   "object":"model",
+>> >                 "owned_by":"AI Hub Ollama",
+>>                   "size":model.get("size"),
+>>                   "modified":model.get("modified_at")
+>>               }
+>>   
+At line:3 char:23
++                   "id":model.get("name"),
++                       ~~~~~~~~~~
+Unexpected token ':model.get' in expression or statement.
+At line:4 char:36
++                   "object":"model",
++                                    ~
+Missing expression after ',' in pipeline element.
+At line:8 char:16
++               }
++                ~
+Missing closing ')' in expression.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+ 
+(.venv) PS D:\AI_Model_Hub>       data = request.json or {}
+At line:1 char:11
++       data = request.json or {}
++           ~
+The Data section is missing its statement block.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingStatementBlockForDataSection
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub> >     messages = data.get(
+>> >         "messages",
+>>           []
+>>       )
+> : The term '>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is 
+correct and try again.
+At line:2 char:1
++ >         "messages",
++ ~
+    + CategoryInfo          : ObjectNotFound: (>:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>       prompt = ""
+(.venv) PS D:\AI_Model_Hub> 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub> >     for message in messages:
+> : The term '>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is 
+correct and try again.
+At line:1 char:1
++ >     for message in messages:
++ ~
+    + CategoryInfo          : ObjectNotFound: (>:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>           prompt += (
+>> >             message.get("role","")
+>>               +
+At line:2 char:37
++ >             message.get("role","")
++                                     ~
+Missing closing ')' in expression.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingEndParenthesisInExpression
+ 
+(.venv) PS D:\AI_Model_Hub>               ": "
+: 
+(.venv) PS D:\AI_Model_Hub>               +
+>> >             message.get("content","")
+At line:1 char:16
++               +
++                ~
+Missing expression after unary operator '+'.
+At line:2 char:26
++ >             message.get("content","")
++                          ~
+Unexpected token '(' in expression or statement.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingExpressionAfterOperator
+ 
+(.venv) PS D:\AI_Model_Hub>               +
+>>               "\n"
+Cannot convert value "\n" to type "System.Int32". Error: "Input string was not in a correct format."
+At line:1 char:15
++               +
++               ~
+    + CategoryInfo          : InvalidArgument: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvalidCastFromStringToInteger
+ 
+(.venv) PS D:\AI_Model_Hub>           )
+At line:1 char:11
++           )
++           ~
+Unexpected token ')' in expression or statement.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : UnexpectedToken
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>       if isinstance(result,dict):
+At line:1 char:9
++       if isinstance(result,dict):
++         ~
+Missing '(' after 'if' in if statement.
+At line:1 char:27
++       if isinstance(result,dict):
++                           ~
+Missing argument in parameter list.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingOpenParenthesisInIfStatement
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub> >         output = result.get(
+>> >             "output",
+>>               str(result)
+>>           )
+result : The term 'result' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path 
+is correct and try again.
+At line:3 char:19
++               str(result)
++                   ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (result:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>       else:
+else: : The term 'else:' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path 
+is correct and try again.
+At line:1 char:7
++       else:
++       ~~~~~
+    + CategoryInfo          : ObjectNotFound: (else::String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub> >         output = str(result)
+result : The term 'result' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path 
+is correct and try again.
+At line:1 char:24
++ >         output = str(result)
++                        ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (result:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>           selected = {}
+selected : The term 'selected' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the 
+path is correct and try again.
+At line:1 char:11
++           selected = {}
++           ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (selected:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>   
+(.venv) PS D:\AI_Model_Hub>       return jsonify(
+>>           {
+>> >             "id":"aihub-response",
+>>               "object":"chat.completion",
+>>               "choices":[
+>>                   {
+>>                       "index":0,
+>> >                     "message":
+>>                       {
+>>                           "role":"assistant",
+>> >                         "content":output
+>>                       },
+>>                       "finish_reason":"stop"
+>>                   }
+>> 
+>> 
+>> (.venv) PS D:\AI_Model_Hub> 
