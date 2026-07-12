@@ -51,3 +51,4 @@ bridge/responses/
 # Migration artifacts
 tools/ollama_manager/backup/
 tools/ollama_manager/migration_log.txt
+startup_audit.txt
