@@ -1,0 +1,41 @@
+{
+    "folders": [
+        {
+            "name": "AI_Model_Hub",
+            "path": "d:/AI_Model_Hub"
+        },
+        {
+            "name": "Nexus98_Guardian",
+            "path": "d:/Nexus98_Guardian"
+        }
+    ],
+    "settings": {
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+        "python.terminal.activateEnvironment": true,
+        "python.analysis.autoSearchPaths": true,
+        "python.analysis.typeCheckingMode": "basic",
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "editor.formatOnSave": true,
+        "terminal.integrated.defaultProfile.windows": "PowerShell",
+        "git.autofetch": true,
+        "git.confirmSync": false
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-python.python",
+            "ms-python.vscode-pylance",
+            "ms-toolsai.jupyter",
+            "ms-vscode.powershell",
+            "github.copilot",
+            "github.copilot-chat",
+            "github.vscode-pull-request-github",
+            "eamodio.gitlens",
+            "redhat.vscode-yaml",
+            "ms-vscode.makefile-tools",
+            "ms-azuretools.vscode-docker",
+            "ms-vscode-remote.remote-containers",
+            "ms-vscode-remote.remote-ssh"
+        ]
+    }
+}

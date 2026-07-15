@@ -10,6 +10,7 @@ from core.recommender import recommend
 from core.tray import run_tray
 from core.display import format_model
 from core.agent_registry import list_agents
+from core.bridge_controller import get_status, enable_bridge, disable_bridge
 
 
 def launch_ui():
@@ -199,6 +200,179 @@ def launch_ui():
         expand=True
     )
 
+
+
+
+
+
+
+    bridge_frame = tk.LabelFrame(
+        right,
+        text="Bridge Control"
+    )
+
+    bridge_frame.pack(
+        fill="x",
+        padx=10,
+        pady=10
+    )
+
+
+    bridge_enabled = False
+
+
+    switch_canvas = tk.Canvas(
+        bridge_frame,
+        width=90,
+        height=150,
+        highlightthickness=0
+    )
+
+    switch_canvas.pack(
+        pady=10
+    )
+
+
+    bridge_status = tk.Label(
+        bridge_frame,
+        text="Bridge: OFF"
+    )
+
+    bridge_status.pack()
+
+
+
+
+    def draw_toggle():
+
+        switch_canvas.delete(
+            "all"
+        )
+
+
+        # vertical rectangular switch body
+
+        if bridge_enabled:
+
+            switch_canvas.create_rectangle(
+                25,
+                5,
+                65,
+                115,
+                fill="green",
+                outline="green"
+            )
+
+            # slider at top = ON
+
+            switch_canvas.create_rectangle(
+                30,
+                15,
+                60,
+                45,
+                fill="white",
+                outline="white"
+            )
+
+
+        else:
+
+            switch_canvas.create_rectangle(
+                25,
+                5,
+                65,
+                115,
+                fill="red",
+                outline="red"
+            )
+
+            # slider at bottom = OFF
+
+            switch_canvas.create_rectangle(
+                30,
+                75,
+                60,
+                105,
+                fill="white",
+                outline="white"
+            )
+
+
+        switch_canvas.create_text(
+            45,
+            125,
+            text="ON" if bridge_enabled else "OFF"
+        )
+
+
+    def refresh_bridge_status():
+
+        nonlocal bridge_enabled
+
+        state = get_status()
+
+        bridge_enabled = bool(
+            state.get("enabled")
+        )
+
+
+        bridge_status.config(
+            text=
+            "Online: "
+            + str(state.get("online"))
+            + " | Enabled: "
+            + str(state.get("enabled"))
+        )
+
+
+        draw_toggle()
+
+
+
+    def bridge_toggle_worker(target_state):
+
+        if target_state:
+
+            enable_bridge()
+
+        else:
+
+            disable_bridge()
+
+
+        app.after(
+            500,
+            refresh_bridge_status
+        )
+
+
+
+    def toggle_bridge():
+
+        nonlocal bridge_enabled
+
+        target = not bridge_enabled
+
+        bridge_enabled = target
+
+        draw_toggle()
+
+
+        threading.Thread(
+            target=bridge_toggle_worker,
+            args=(target,),
+            daemon=True
+        ).start()
+
+
+
+    switch_canvas.bind(
+        "<Button-1>",
+        lambda event: toggle_bridge()
+    )
+
+
+    refresh_bridge_status()
 
 
     def refresh_agents():

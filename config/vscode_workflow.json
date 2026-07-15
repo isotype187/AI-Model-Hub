@@ -1,0 +1,61 @@
+{
+    "roles": {
+        "desktop": {
+            "machineName": "desktop-dvhic6m",
+            "role": "host",
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-toolsai.jupyter",
+                "ms-vscode.powershell",
+                "github.copilot",
+                "github.copilot-chat",
+                "github.vscode-pull-request-github",
+                "eamodio.gitlens",
+                "redhat.vscode-yaml",
+                "ms-vscode.makefile-tools",
+                "ms-azuretools.vscode-docker",
+                "ms-vscode-remote.remote-containers",
+                "ms-vscode-remote.remote-ssh"
+            ],
+            "workspaceSettings": {
+                "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+                "python.terminal.activateEnvironment": true,
+                "python.analysis.autoSearchPaths": true,
+                "python.analysis.typeCheckingMode": "basic",
+                "python.testing.pytestEnabled": true,
+                "python.testing.unittestEnabled": false
+            }
+        },
+        "laptop": {
+            "machineName": "laptop",
+            "role": "client",
+            "extensions": [
+                "ms-vscode-remote.remote-ssh",
+                "github.copilot",
+                "github.copilot-chat"
+            ],
+            "workspaceSettings": {
+                "remote.SSH.useLocalServer": true,
+                "workbench.startupEditor": "none",
+                "remote.autoForwardPortsSource": "process"
+            },
+            "startup": {
+                "command": "code",
+                "args": [
+                    "--reuse-window",
+                    "D:/AI_Model_Hub/Nexus98_Workspace.code-workspace"
+                ],
+                "description": "Open the shared workspace automatically when VS Code launches"
+            }
+        }
+    },
+    "workspace": {
+        "root": "D:/AI_Model_Hub",
+        "workspaceFile": "D:/AI_Model_Hub/Nexus98_Workspace.code-workspace"
+    },
+    "tunnel": {
+        "accountType": "github",
+        "preferredHost": "desktop-dvhic6m"
+    }
+}
