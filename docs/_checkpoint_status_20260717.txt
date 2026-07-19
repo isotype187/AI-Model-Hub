@@ -1,0 +1,101 @@
+﻿ M AI_Model_Hub_PROJECT_CONTEXT_EXPORT.txt
+ D AI_Model_Hub_ROADMAP.md
+ D AI_Workstation_Audit.ps1
+ M Nexus98_Workspace.code-workspace
+ M PROJECT_HISTORY.md
+ D ai_hub.py
+ D ai_model_hub_tree.txt
+ M api/vscode_bridge.py
+ D autogen_multi_agent_test.py
+ D autogen_team_test.py
+ D autogen_test.py
+ D autogen_test_small.py
+ M bridge/vscode_listener.py
+ M bridge/worker.py
+ M bridge_toggle_patch.py
+ M bridge_ui_patch.py
+ M clean_bridge_toggle_patch.py
+ M config/system_config.json
+ M config/system_context.json
+ M config/vscode_workflow.json
+ M core/api_server.py
+ M core/bridge.py
+ M core/config.py
+ M core/db.py
+ M core/favorites.py
+ M core/installer.py
+ M core/logs.py
+ M core/memory.py
+ M core/mouse_agent.py
+ M core/orchestrator.py
+ M core/project_engine.py
+ M core/resume.py
+ M core/router.py
+ M core/server.py
+ M core/status.py
+ M core/supervisor.py
+ M core/supervisor/__init__.py
+ M core/vscode_bridge.py
+ M diagnostic.txt
+ M fast_vertical_switch_patch.py
+ M fix_switch_logic.py
+ M handoffs/7726.txt
+ M integrations/vscode_connector.py
+ M main.py
+ M orchestrator_bridge_test.py
+ M project_files.txt
+ M real_toggle_patch.py
+ M requirements.txt
+ M runtime/generate_models.py
+ M runtime/run-ai.ps1
+ M scripts/launch_vscode_laptop.ps1
+ M scripts/setup_vscode_workflow.ps1
+ D test_ollama_autogen.py
+ M tests/test_vscode_bridge.py
+ M tests/test_vscode_connection.py
+ M tools/agent_runner.py
+ M tools/agent_selector.py
+ M tools/continue_sync.py
+ M tools/file_tools.py
+ M tools/git_tools.py
+ M tools/model_router.py
+ M tools/ollama-startup.ps1
+ M tools/ollama_manager/migrate_execute.py
+ M vertical_bridge_switch_patch.py
+ M vertical_rect_switch.py
+ M vscode_extension/extension.js
+?? $null
+?? .pytest_temp_alt/
+?? AI_Model_Hub_LEFTOVER_INVENTORY.md
+?? AI_Model_Hub_archive/
+?? AI_Model_Hub_path_references.txt
+?? archive/
+?? assets/
+?? codex_tasks/
+?? config/mouse_agent.json
+?? core/memory_migration.py
+?? core/memory_service.py
+?? core/mouse_control.py
+?? docs/MEMORY_ARCHITECTURE_DESIGN.md
+?? docs/MOUSE_AGENT_SYSTEM.md
+?? docs/Nexus98_Autonomous_Operating_Rules.md
+?? docs/Nexus98_Tool_Registry.md
+?? docs/Nexus98_Vision_Architecture.md
+?? docs/PHASE5_SUPERVISOR_PROJECTENGINE.md
+?? docs/_checkpoint_status_20260717.txt
+?? handoffs/CODEX_NEXUS98_PHASE5_INTEGRATION_REVIEW.md
+?? handoffs/CODEX_NEXUS98_PHASE5_INTEGRATION_REVIEW_ANALYSIS.md
+?? make_icon.py
+?? nexus98_path_inventory.txt
+?? patch_scanner.py
+?? pytest.ini
+?? reports/
+?? tests/Launch-Nexus98-Codex.ps1
+?? "tests/Nexus98 Codex Launcher.lnk"
+?? tests/conftest.py
+?? tests/test_import_smoke.py
+?? tests/test_memory_phase1.py
+?? tests/test_mouse_agent.py
+?? tests/test_supervisor_phase5.py
+?? tools/Create-Nexus98-Codex-DesktopShortcut.ps1
+?? tools/Launch-Nexus98-Codex.ps1

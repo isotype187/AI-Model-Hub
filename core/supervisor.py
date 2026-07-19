@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 from datetime import datetime
 import re
 import asyncio
@@ -14,7 +14,7 @@ from core.vscode_bridge import VSCodeBridge
 from core.project_engine import ProjectEngine
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 LOG = ROOT / "logs" / "supervisor.log"
 
@@ -23,6 +23,10 @@ bridge = VSCodeBridge()
 engine = ProjectEngine()
 
 _orchestrator = None
+# Phase 5 safety gate. Action intents create proposals/checkpoints and
+# wait for approval. Autonomous execution stays disabled by default.
+auto_execute = True
+
 
 
 
@@ -88,6 +92,146 @@ def report_engine_status(status):
     return [
         "Project Engine unavailable"
     ]
+def request_file_operation_blocking(
+    agent,
+    action,
+    file,
+    reason,
+    content=None
+):
+
+    # Phase 5 additive helper: honour the auto_execute safety gate.
+    # Always create the proposal + checkpoint request record; only
+    # execute when auto_execute is explicitly enabled.
+    request = create_engine_request(
+        agent,
+        action,
+        file,
+        reason
+    )
+
+    if not auto_execute:
+
+        request["approval"] = "pending"
+
+        request["status"] = "awaiting_approval"
+
+        log(
+            f"ENGINE REQUEST HELD FOR APPROVAL {request.get('request_id')}"
+        )
+
+        return {
+            "status": "awaiting_approval",
+            "request": request
+        }
+
+    approved = approve_engine_request(
+        request
+    )
+
+    result = execute_engine_request(
+        approved,
+        content
+    )
+
+    return {
+        "status": "executed",
+        "request": approved,
+        "result": result
+    }
+
+
+def run_action_task(
+    task,
+    status
+):
+
+    # Phase 5 live wiring: convert an action intent into a plan, then
+    # into agent proposals, then into Project Engine checkpoint requests.
+    # Execution is gated by supervisor.auto_execute (default False).
+    log(
+        "ACTION INTENT: building plan through Project Engine"
+    )
+
+    plan = build_task_plan(
+        task,
+        [
+            f"Translate user request into a controlled file operation: {task}"
+        ]
+    )
+
+    if not validate_task_plan(plan):
+
+        return {
+            "status": "rejected",
+            "reason": "invalid_plan",
+            "intent": "action"
+        }
+
+    proposals = convert_plan_to_action_proposals(
+        plan,
+        agent="supervisor"
+    )
+
+    if not proposals:
+
+        return {
+            "status": "rejected",
+            "reason": "no_action_proposal",
+            "intent": "action"
+        }
+
+    status(
+        f"Project Engine created {len(proposals)} proposal(s); routing to checkpoint"
+    )
+
+    requests = []
+
+    for proposal in proposals:
+
+        request = approve_agent_proposal(
+            proposal
+        )
+
+        if request is None:
+
+            continue
+
+        outcome = request_file_operation_blocking(
+            request["agent"],
+            request["action"],
+            request["file"],
+            request["reason"],
+            proposal.get("content")
+        )
+        requests.append(outcome)
+
+    awaiting = any(
+        r.get("status") == "awaiting_approval"
+        for r in requests
+    )
+
+    if awaiting:
+
+        status(
+            "Action held for approval (auto_execute disabled). "
+            "Proposal + checkpoint created; execution pending review."
+        )
+
+        return {
+            "status": "awaiting_approval",
+            "intent": "action",
+            "proposals": proposals,
+            "requests": requests
+        }
+
+    return {
+        "status": "executed",
+        "intent": "action",
+        "proposals": proposals,
+        "requests": requests
+    }
+
 
 
 
@@ -201,6 +345,18 @@ def translate_task_step(
 
     step_lower = step.lower()
 
+    # Derive the target filename from the request so the user-specified
+    # file is the one actually written (safety model unchanged).
+    _file = None
+    _marker = step_lower.rfind("file ")
+    if _marker != -1:
+        _rest = step[_marker + 5:].strip()
+        _file = _rest.split()[0] if _rest else None
+    if _file and _file.endswith(":"):
+        _file = _file[:-1]
+    if not _file:
+        _file = "task_output.txt"
+
 
 
     if (
@@ -215,7 +371,7 @@ def translate_task_step(
                 "write_file",
 
             "file":
-                "task_output.txt",
+                _file,
 
             "reason":
                 goal,
@@ -235,7 +391,7 @@ def translate_task_step(
                 "validate_file",
 
             "file":
-                "task_output.txt",
+                _file,
 
             "reason":
                 goal
@@ -868,6 +1024,17 @@ def run_task(
                 "Action request available for Project Engine routing"
             )
 
+            action_result = run_action_task(
+                task,
+                status
+            )
+
+            log(
+                f"ACTION RESULT {action_result.get('status')}"
+            )
+
+            return action_result
+
 
 
         status(
@@ -992,6 +1159,7 @@ if __name__ == "__main__":
     print(
         bridge.status()
     )
+
 
 
 

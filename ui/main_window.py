@@ -1,515 +1,106 @@
-﻿import tkinter as tk
-from tkinter import ttk
-import threading
+"""Nexus98 Command Center - UI shell (Phase 9 Step 2).
 
-from core.catalog import get_catalog, sync_catalog
-from core.queue import add_to_queue, cancel_all
-from core.inspector import inspect_model
-from core.favorites import toggle_favorite
-from core.recommender import recommend
-from core.tray import run_tray
-from core.display import format_model
-from core.agent_registry import list_agents
-from core.bridge_controller import get_status, enable_bridge, disable_bridge
+Composition/entry point only. Builds a themed ttk.Notebook navigation shell and
+hosts the existing view builders (behavior unchanged). No backend/autonomy
+logic here: autonomy remains read-only via ui.autonomy_dashboard.snapshot()
+inside its view. Preserves the launch_ui() entry contract and Tkinter.
+"""
+import tkinter as tk
+from tkinter import ttk
+
+from ui import theme
+from ui.views import (
+    dashboard_view,
+    models_view,
+    supervisor_view,
+    agents_view,
+    bridge_view,
+    autonomy_view,
+    system_view,
+    operations_view,
+)
 
 
 def launch_ui():
 
-    catalog_cache = []
-    selected_model = None
-
-
     app = tk.Tk()
-    app.title("AI Model Hub - Command Center")
+    app.title("Nexus98 Command Center")
     app.geometry("1600x950")
 
+    theme.apply_theme(app)
 
-    main = tk.Frame(app)
-    main.pack(fill="both", expand=True)
+    # Phase C: run first-run environment verification + expected-store seeding
+    # (idempotent; best-effort so a setup issue never blocks the UI).
+    try:
+        from core.boot import verify_environment
+        verify_environment()
+    except Exception:
+        pass
 
-
-    left = tk.Frame(main, width=300)
-    left.pack(side="left", fill="y")
-
-
-    center = tk.Frame(main)
-    center.pack(side="left", fill="both", expand=True)
-
-
-    right = tk.Frame(main, width=500)
-    right.pack(side="right", fill="both")
-
-
-
-    search_label = tk.Label(
-        left,
-        text="Search Models:"
+    # --- Title bar ---
+    header = ttk.Frame(app)
+    header.pack(fill="x", padx=16, pady=(14, 6))
+    ttk.Label(header, text="Nexus98 Command Center", style="Title.TLabel").pack(
+        side="left"
     )
-
-    search_label.pack(
-        padx=10,
-        pady=(10,0)
-    )
-
-
-    search_var = tk.StringVar()
-
-
-    search = tk.Entry(
-        left,
-        textvariable=search_var
-    )
-
-    search.pack(
-        padx=10,
-        pady=5,
-        fill="x"
-    )
-
-
-    listbox = tk.Listbox(left)
-
-    listbox.pack(
-        padx=10,
-        pady=10,
-        fill="both",
-        expand=True
-    )
-
-
-    status = tk.Label(
-        center,
-        text="Ready"
-    )
-
-    status.pack()
-
-
-    inspector = tk.Text(
-        center,
-        height=25
-    )
-
-    inspector.pack(
-        fill="both",
-        expand=True
-    )
-
-
-    task_label = tk.Label(
-        center,
-        text="Supervisor Task Console:"
-    )
-
-    task_label.pack()
-
-
-    task_box = tk.Text(
-        center,
-        height=5
-    )
-
-    task_box.pack(
-        fill="x"
-    )
-
-
-    output = tk.Text(
-        center,
-        height=10
-    )
-
-    output.pack(
-        fill="both"
-    )
-
-
-
-    def execute_task():
-
-        task = task_box.get(
-            "1.0",
-            tk.END
-        )
-
-
-        output.insert(
-            tk.END,
-            "\nRunning:\n" + task
-        )
-
-
-        def worker():
-
-            from core.supervisor import run_task
-
-            app.after(
-                0,
-                lambda: output.insert(
-                    tk.END,
-                    "\n[STATUS] Supervisor starting...\n"
-                )
-            )
-
-            def status_update(message):
-
-                app.after(
-                    0,
-                    lambda: output.insert(
-                        tk.END,
-                        f"\n[STATUS] {message}\n"
-                    )
-                )
-
-
-            result = run_task(
-                task,
-                status_callback=status_update
-            )
-
-            app.after(
-                0,
-                lambda: output.insert(
-                    tk.END,
-                    "\n\nRESULT:\n" + result
-                )
-            )
-
-
-        threading.Thread(
-            target=worker,
-            daemon=True
-        ).start()
-
-
-
-    tk.Button(
-        center,
-        text="Run Supervisor Task",
-        command=execute_task
-    ).pack()
-
-
-
-    agents = tk.Text(
-        right
-    )
-
-    agents.pack(
-        fill="both",
-        expand=True
-    )
-
-
-
-
-
-
-
-    bridge_frame = tk.LabelFrame(
-        right,
-        text="Bridge Control"
-    )
-
-    bridge_frame.pack(
-        fill="x",
-        padx=10,
-        pady=10
-    )
-
-
-    bridge_enabled = False
-
-
-    switch_canvas = tk.Canvas(
-        bridge_frame,
-        width=90,
-        height=150,
-        highlightthickness=0
-    )
-
-    switch_canvas.pack(
-        pady=10
-    )
-
-
-    bridge_status = tk.Label(
-        bridge_frame,
-        text="Bridge: OFF"
-    )
-
-    bridge_status.pack()
-
-
-
-
-    def draw_toggle():
-
-        switch_canvas.delete(
-            "all"
-        )
-
-
-        # vertical rectangular switch body
-
-        if bridge_enabled:
-
-            switch_canvas.create_rectangle(
-                25,
-                5,
-                65,
-                115,
-                fill="green",
-                outline="green"
-            )
-
-            # slider at top = ON
-
-            switch_canvas.create_rectangle(
-                30,
-                15,
-                60,
-                45,
-                fill="white",
-                outline="white"
-            )
-
-
-        else:
-
-            switch_canvas.create_rectangle(
-                25,
-                5,
-                65,
-                115,
-                fill="red",
-                outline="red"
-            )
-
-            # slider at bottom = OFF
-
-            switch_canvas.create_rectangle(
-                30,
-                75,
-                60,
-                105,
-                fill="white",
-                outline="white"
-            )
-
-
-        switch_canvas.create_text(
-            45,
-            125,
-            text="ON" if bridge_enabled else "OFF"
-        )
-
-
-    def refresh_bridge_status():
-
-        nonlocal bridge_enabled
-
-        state = get_status()
-
-        bridge_enabled = bool(
-            state.get("enabled")
-        )
-
-
-        bridge_status.config(
-            text=
-            "Online: "
-            + str(state.get("online"))
-            + " | Enabled: "
-            + str(state.get("enabled"))
-        )
-
-
-        draw_toggle()
-
-
-
-    def bridge_toggle_worker(target_state):
-
-        if target_state:
-
-            enable_bridge()
-
-        else:
-
-            disable_bridge()
-
-
-        app.after(
-            500,
-            refresh_bridge_status
-        )
-
-
-
-    def toggle_bridge():
-
-        nonlocal bridge_enabled
-
-        target = not bridge_enabled
-
-        bridge_enabled = target
-
-        draw_toggle()
-
-
-        threading.Thread(
-            target=bridge_toggle_worker,
-            args=(target,),
-            daemon=True
-        ).start()
-
-
-
-    switch_canvas.bind(
-        "<Button-1>",
-        lambda event: toggle_bridge()
-    )
-
-
-    refresh_bridge_status()
-
-
-    def refresh_agents():
-
-        agents.delete(
-            "1.0",
-            tk.END
-        )
-
-
-        for agent in list_agents():
-
-            agents.insert(
-                tk.END,
-                f"""
-{agent['name']}
-Type: {agent['type']}
-Status: {agent['status']}
-Description: {agent['description']}
-
-"""
-            )
-
-
+    ttk.Label(
+        header, text="Autonomy-governed workstation", style="Muted.TLabel"
+    ).pack(side="left", padx=(14, 0))
+
+    # --- Navigation (tabbed shell) ---
+    nav = ttk.Notebook(app)
+    nav.pack(fill="both", expand=True, padx=12, pady=(0, 12))
+
+    def add_tab(title):
+        frame = ttk.Frame(nav)
+        nav.add(frame, text=title)
+        return frame
+
+    dashboard_tab = add_tab("Dashboard")
+    models_tab = add_tab("Models")
+    supervisor_tab = add_tab("Supervisor")
+    agents_tab = add_tab("Agents")
+    bridge_tab = add_tab("Bridge")
+    autonomy_tab = add_tab("Autonomy")
+    operations_tab = add_tab("Operations")
+    system_tab = add_tab("Logs/System")
+
+    # --- Dashboard (read-only overview) ---
+    dashboard_view.build(dashboard_tab)
+
+    # --- Models (left search/list + center inspector) ---
+    models_left = tk.Frame(models_tab, width=320)
+    models_left.pack(side="left", fill="y")
+    models_center = tk.Frame(models_tab)
+    models_center.pack(side="left", fill="both", expand=True)
+    models = models_view.build(models_left, models_center)
+
+    # --- Supervisor (task console; footer buttons drive shared refresh) ---
+    supervisor = supervisor_view.build(app, supervisor_tab)
+
+    # --- Agents ---
+    agents = agents_view.build(agents_tab)
+
+    # --- Bridge ---
+    bridge_view.build(app, bridge_tab)
+
+    # --- Autonomy (STRICTLY READ-ONLY; snapshot() only) ---
+    autonomy_view.build(autonomy_tab)
+
+    # --- Operations (Phase C; read-only live pipeline visibility) ---
+    operations = operations_view.build(operations_tab)
+
+    # --- Logs / System (read-only) ---
+    system_view.build(system_tab)
 
     def refresh():
+        # Preserve original coordinated refresh: models list + agents panel.
+        models.refresh()
+        agents.refresh()
 
-        nonlocal catalog_cache
-
-        sync_catalog()
-
-        catalog_cache = recommend(
-            get_catalog()
-        )
-
-        listbox.delete(
-            0,
-            tk.END
-        )
-
-
-        for model in catalog_cache:
-
-            listbox.insert(
-                tk.END,
-                model.get(
-                    "name",
-                    "unknown"
-                )
-            )
-
-
-        refresh_agents()
-
-
-
-    def on_select(event):
-
-        nonlocal selected_model
-
-
-        index = listbox.curselection()
-
-        if not index:
-            return
-
-
-        name = listbox.get(
-            index[0]
-        )
-
-
-        for model in catalog_cache:
-
-            if model["name"] == name:
-
-                selected_model = model
-                break
-
-
-        if selected_model:
-
-            inspector.delete(
-                "1.0",
-                tk.END
-            )
-
-            inspector.insert(
-                tk.END,
-                format_model(
-                    {
-                        **selected_model,
-                        **inspect_model(selected_model)
-                    }
-                )
-            )
-
-
-
-    listbox.bind(
-        "<<ListboxSelect>>",
-        on_select
-    )
-
-
-
-    search_var.trace_add(
-        "write",
-        lambda *_: refresh()
-    )
-
-
-    tk.Button(
-        center,
-        text="Refresh",
-        command=refresh
-    ).pack()
-
-
-    tk.Button(
-        center,
-        text="Tray Mode",
-        command=lambda:
-        threading.Thread(
-            target=run_tray,
-            daemon=True
-        ).start()
-    ).pack()
-
-
+    models.search_var.trace_add("write", lambda *_: refresh())
+    supervisor.add_footer_buttons(refresh)
 
     refresh()
 
     app.mainloop()
-
-
-
-
-
-

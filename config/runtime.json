@@ -1,0 +1,8 @@
+﻿{
+  "base_path": "D:\\Nexus98",
+  "hf_dir": "D:\\Nexus98\\data\\models\\hf",
+  "gguf_dir": "D:\\Nexus98\\data\\models\\gguf",
+  "max_workers": 2,
+  "ui_mode": "app",
+  "cache_ttl": 30
+}

@@ -22,7 +22,7 @@ import threading
 import subprocess
 from huggingface_hub import snapshot_download
 
-HF_DIR = r'D:\AI_Model_Hub\data\models\hf'
+HF_DIR = r'D:\Nexus98\data\models\hf'
 
 def install_ollama(model_id, callback=None):
     subprocess.Popen(f'ollama pull {model_id}', shell=True)
@@ -43,4 +43,5 @@ def install_model(model, callback=None):
         install_ollama(model['id'], callback)
     elif model.get('type') == 'hf':
         install_hf(model['id'], callback)
+
 

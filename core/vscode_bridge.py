@@ -4,7 +4,7 @@ import json
 import uuid
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 REQUEST_DIR = ROOT / "bridge" / "requests"
 RESPONSE_DIR = ROOT / "bridge" / "responses"
@@ -166,3 +166,4 @@ if __name__ == "__main__":
             indent=4
         )
     )
+

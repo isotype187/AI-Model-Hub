@@ -1,0 +1,26 @@
+{
+    "move_duration": 0.0,
+    "move_steps": 20,
+    "click_delay": 0.05,
+    "double_click_interval": 0.12,
+    "drag_duration": 0.3,
+    "scroll_amount": 3,
+    "action_timeout": 5.0,
+    "inter_action_delay": 0.02,
+    "safety": {
+        "enforce_bounds": true,
+        "boundary_margin": 0,
+        "use_virtual_desktop": true,
+        "fail_on_out_of_bounds": true,
+        "max_actions_per_session": 100000,
+        "emergency_stop_default": false
+    },
+    "logging": {
+        "enabled": true,
+        "path": "D:\\Nexus98\\logs\\mouse_agent.log",
+        "max_history": 500
+    },
+    "screenshot": {
+        "dir": "D:\\Nexus98\\logs\\mouse_screenshots"
+    }
+}

@@ -1,7 +1,7 @@
 ﻿import os
 from datetime import datetime
 
-LOG_DIR = r'D:\AI_Model_Hub\logs'
+LOG_DIR = r'D:\Nexus98\logs'
 os.makedirs(LOG_DIR, exist_ok=True)
 
 
@@ -20,3 +20,4 @@ def read_logs():
 
     with open(path, 'r', encoding='utf-8') as f:
         return f.readlines()
+

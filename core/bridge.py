@@ -6,7 +6,7 @@ from core.supervisor import run_task
 from core.command import Command
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 LOG = ROOT / "logs" / "bridge.log"
 
@@ -125,3 +125,4 @@ USER REQUEST:
                 str(e)
 
         }
+

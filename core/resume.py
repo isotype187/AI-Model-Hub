@@ -1,7 +1,7 @@
 ﻿import os
 import json
 
-PATH = r'D:\AI_Model_Hub\data\resume.json'
+PATH = r'D:\Nexus98\data\resume.json'
 
 
 def save_state(model_id, progress):
@@ -20,3 +20,4 @@ def load_state():
 
     with open(PATH, 'r') as f:
         return json.load(f)
+

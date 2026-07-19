@@ -24,7 +24,7 @@ def status():
         {
 
             "service":
-                "AI_Model_Hub API",
+                "Nexus98 API",
 
             "status":
                 "online",
@@ -74,7 +74,7 @@ def task():
 if __name__ == "__main__":
 
     print(
-        "AI_Model_Hub API SERVER STARTED"
+        "Nexus98 API SERVER STARTED"
     )
 
 
@@ -85,3 +85,4 @@ if __name__ == "__main__":
         port=8000
 
     )
+

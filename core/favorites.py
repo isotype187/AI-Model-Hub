@@ -1,7 +1,7 @@
 ﻿import os
 import json
 
-FAV_PATH = r'D:\AI_Model_Hub\data\favorites.json'
+FAV_PATH = r'D:\Nexus98\data\favorites.json'
 
 
 def load_favorites():
@@ -31,3 +31,4 @@ def toggle_favorite(model):
 
     save_favorites(favs)
     return favs
+

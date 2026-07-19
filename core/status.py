@@ -1,7 +1,7 @@
 ﻿import os
 import subprocess
 
-HF_DIR = r'D:\AI_Model_Hub\data\models\hf'
+HF_DIR = r'D:\Nexus98\data\models\hf'
 _installed = set()
 
 def is_installed(model):
@@ -21,3 +21,4 @@ def mark_installed(model):
         _installed.add(model.get('id'))
     except:
         pass
+

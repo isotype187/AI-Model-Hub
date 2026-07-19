@@ -1,7 +1,7 @@
 ﻿import sqlite3
 
 
-DB_PATH = r"D:\AI_Model_Hub\data\db\models.db"
+DB_PATH = r"D:\Nexus98\data\db\models.db"
 
 
 

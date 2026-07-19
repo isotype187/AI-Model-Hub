@@ -12,11 +12,13 @@ class Orchestrator:
 
         self.agents = {}
 
+        self.load_agents()
+
 
 
     def load_agents(self):
 
-        print("Loading AI_Model_Hub agent team")
+        print("Loading Nexus98 agent team")
 
         for name in self.factory.config["agents"]:
 
@@ -56,3 +58,5 @@ class Orchestrator:
             )
 
         return output
+
+

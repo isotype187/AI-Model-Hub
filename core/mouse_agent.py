@@ -3,7 +3,7 @@ import subprocess
 import sys
 
 
-MOUSE_TOOL = r"D:\AI_Model_Hub\tools\mouse_agent\ai_mouse_mode.py"
+MOUSE_TOOL = r"D:\Nexus98\tools\mouse_agent\ai_mouse_mode.py"
 
 _process = None
 
@@ -48,3 +48,4 @@ def mouse_status():
         return "RUNNING"
 
     return "STOPPED"
+

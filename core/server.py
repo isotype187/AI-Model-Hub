@@ -4,7 +4,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 LOG = ROOT / "logs" / "server.log"
 
@@ -63,7 +63,7 @@ def status():
     return jsonify(
         {
             "status":
-                "AI_Model_Hub online"
+                "Nexus98 online"
         }
     )
 
@@ -78,4 +78,6 @@ if __name__ == "__main__":
         host="127.0.0.1",
         port=5050
     )
+
+
 
