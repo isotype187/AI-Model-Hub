@@ -3,7 +3,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-LOG = Path(r"D:\AI_Model_Hub\logs\startup_crash.log")
+LOG = Path(r"D:\Nexus98\logs\startup_crash.log")
 
 
 def write_log(message):
@@ -64,3 +64,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+

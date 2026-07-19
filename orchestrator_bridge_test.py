@@ -6,7 +6,7 @@ from core.supervisor import run_task
 def log(message):
 
     with open(
-        r"D:\AI_Model_Hub\logs\orchestrator_bridge_test.log",
+        r"D:\Nexus98\logs\orchestrator_bridge_test.log",
         "a",
         encoding="utf-8"
     ) as f:
@@ -93,3 +93,4 @@ except Exception as e:
 
 print("")
 print("=== TEST COMPLETE ===")
+

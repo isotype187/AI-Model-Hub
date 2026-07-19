@@ -1,4 +1,4 @@
-> def log(message):
+﻿> def log(message):
   
       logging.info(
 >         f"{datetime.now()} | {message}"
@@ -93,7 +93,7 @@
                   }
 
 
-(.venv) PS D:\AI_Model_Hub> > def log(message):
+(.venv) PS D:\Nexus98> > def log(message):
 message : The term 'message' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the 
 path is correct and try again.
 At line:1 char:11
@@ -102,8 +102,8 @@ At line:1 char:11
     + CategoryInfo          : ObjectNotFound: (message:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>       logging.info(
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>       logging.info(
 >> >         f"{datetime.now()} | {message}"
 >>       )
 > : The term '>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is 
@@ -114,10 +114,10 @@ At line:2 char:1
     + CategoryInfo          : ObjectNotFound: (>:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub> > def ollama_models():
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98> > def ollama_models():
 At line:1 char:21
 + > def ollama_models():
 +                     ~
@@ -125,8 +125,8 @@ An expression was expected after '('.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : ExpectedExpression
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>       try:
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>       try:
 try: : The term 'try:' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is 
 correct and try again.
 At line:1 char:7
@@ -135,8 +135,8 @@ At line:1 char:7
     + CategoryInfo          : ObjectNotFound: (try::String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub> >         response = requests.get(
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98> >         response = requests.get(
 >>               "http://127.0.0.1:11434/api/tags",
 >>               timeout=10
 At line:2 char:49
@@ -154,7 +154,7 @@ Missing closing ')' in expression.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : MissingExpressionAfterToken
  
-(.venv) PS D:\AI_Model_Hub>           )
+(.venv) PS D:\Nexus98>           )
 At line:1 char:11
 +           )
 +           ~
@@ -162,8 +162,8 @@ Unexpected token ')' in expression or statement.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : UnexpectedToken
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub> >         data = response.json()
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98> >         data = response.json()
 At line:1 char:32
 + >         data = response.json()
 +                                ~
@@ -171,8 +171,8 @@ An expression was expected after '('.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : ExpectedExpression
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>           return data.get(
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>           return data.get(
 >>               "models",
 >>       except Exception as e:
 At line:2 char:24
@@ -190,8 +190,8 @@ Missing closing ')' in expression.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : MissingExpressionAfterToken
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>           log(
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>           log(
 >> >             f"OLLAMA MODEL ERROR {e}"
 >>           )
 > : The term '>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is 
@@ -202,8 +202,8 @@ At line:2 char:1
     + CategoryInfo          : ObjectNotFound: (>:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>           return []
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>           return []
 At line:1 char:19
 +           return []
 +                   ~
@@ -211,8 +211,8 @@ Missing type name after '['.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : MissingTypename
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>       discovered = []
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>       discovered = []
 discovered : The term 'discovered' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that 
 the path is correct and try again.
 At line:1 char:7
@@ -221,8 +221,8 @@ At line:1 char:7
     + CategoryInfo          : ObjectNotFound: (discovered:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub> >     for model in ollama_models():
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98> >     for model in ollama_models():
 At line:1 char:34
 + >     for model in ollama_models():
 +                                  ~
@@ -230,8 +230,8 @@ An expression was expected after '('.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : ExpectedExpression
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>           discovered.append(
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>           discovered.append(
 >>               {
 >>                   "id":model.get("name"),
 >>                   "object":"model",
@@ -255,7 +255,7 @@ Missing closing ')' in expression.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : UnexpectedToken
  
-(.venv) PS D:\AI_Model_Hub>       data = request.json or {}
+(.venv) PS D:\Nexus98>       data = request.json or {}
 At line:1 char:11
 +       data = request.json or {}
 +           ~
@@ -263,8 +263,8 @@ The Data section is missing its statement block.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : MissingStatementBlockForDataSection
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub> >     messages = data.get(
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98> >     messages = data.get(
 >> >         "messages",
 >>           []
 >>       )
@@ -276,12 +276,12 @@ At line:2 char:1
     + CategoryInfo          : ObjectNotFound: (>:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>       prompt = ""
-(.venv) PS D:\AI_Model_Hub> 
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub> >     for message in messages:
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>       prompt = ""
+(.venv) PS D:\Nexus98> 
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98> >     for message in messages:
 > : The term '>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is 
 correct and try again.
 At line:1 char:1
@@ -290,8 +290,8 @@ At line:1 char:1
     + CategoryInfo          : ObjectNotFound: (>:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>           prompt += (
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>           prompt += (
 >> >             message.get("role","")
 >>               +
 At line:2 char:37
@@ -301,9 +301,9 @@ Missing closing ')' in expression.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : MissingEndParenthesisInExpression
  
-(.venv) PS D:\AI_Model_Hub>               ": "
+(.venv) PS D:\Nexus98>               ": "
 : 
-(.venv) PS D:\AI_Model_Hub>               +
+(.venv) PS D:\Nexus98>               +
 >> >             message.get("content","")
 At line:1 char:16
 +               +
@@ -316,7 +316,7 @@ Unexpected token '(' in expression or statement.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : MissingExpressionAfterOperator
  
-(.venv) PS D:\AI_Model_Hub>               +
+(.venv) PS D:\Nexus98>               +
 >>               "\n"
 Cannot convert value "\n" to type "System.Int32". Error: "Input string was not in a correct format."
 At line:1 char:15
@@ -325,7 +325,7 @@ At line:1 char:15
     + CategoryInfo          : InvalidArgument: (:) [], RuntimeException
     + FullyQualifiedErrorId : InvalidCastFromStringToInteger
  
-(.venv) PS D:\AI_Model_Hub>           )
+(.venv) PS D:\Nexus98>           )
 At line:1 char:11
 +           )
 +           ~
@@ -333,8 +333,8 @@ Unexpected token ')' in expression or statement.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : UnexpectedToken
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>       if isinstance(result,dict):
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>       if isinstance(result,dict):
 At line:1 char:9
 +       if isinstance(result,dict):
 +         ~
@@ -346,8 +346,8 @@ Missing argument in parameter list.
     + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
     + FullyQualifiedErrorId : MissingOpenParenthesisInIfStatement
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub> >         output = result.get(
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98> >         output = result.get(
 >> >             "output",
 >>               str(result)
 >>           )
@@ -359,9 +359,9 @@ At line:3 char:19
     + CategoryInfo          : ObjectNotFound: (result:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>       else:
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>       else:
 else: : The term 'else:' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path 
 is correct and try again.
 At line:1 char:7
@@ -370,8 +370,8 @@ At line:1 char:7
     + CategoryInfo          : ObjectNotFound: (else::String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub> >         output = str(result)
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98> >         output = str(result)
 result : The term 'result' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path 
 is correct and try again.
 At line:1 char:24
@@ -380,8 +380,8 @@ At line:1 char:24
     + CategoryInfo          : ObjectNotFound: (result:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>           selected = {}
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>           selected = {}
 selected : The term 'selected' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the 
 path is correct and try again.
 At line:1 char:11
@@ -390,9 +390,9 @@ At line:1 char:11
     + CategoryInfo          : ObjectNotFound: (selected:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
  
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>   
-(.venv) PS D:\AI_Model_Hub>       return jsonify(
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>   
+(.venv) PS D:\Nexus98>       return jsonify(
 >>           {
 >> >             "id":"aihub-response",
 >>               "object":"chat.completion",
@@ -408,4 +408,4 @@ At line:1 char:11
 >>                   }
 >> 
 >> 
->> (.venv) PS D:\AI_Model_Hub> 
+>> (.venv) PS D:\Nexus98> 

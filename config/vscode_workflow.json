@@ -44,18 +44,19 @@
                 "command": "code",
                 "args": [
                     "--reuse-window",
-                    "D:/AI_Model_Hub/Nexus98_Workspace.code-workspace"
+                    "D:/Nexus98/Nexus98_Workspace.code-workspace"
                 ],
                 "description": "Open the shared workspace automatically when VS Code launches"
             }
         }
     },
     "workspace": {
-        "root": "D:/AI_Model_Hub",
-        "workspaceFile": "D:/AI_Model_Hub/Nexus98_Workspace.code-workspace"
+        "root": "D:/Nexus98",
+        "workspaceFile": "D:/Nexus98/Nexus98_Workspace.code-workspace"
     },
     "tunnel": {
         "accountType": "github",
         "preferredHost": "desktop-dvhic6m"
     }
 }
+

@@ -11,7 +11,7 @@ def git_status() -> str:
             "git",
             "status"
         ],
-        cwd="D:/AI_Model_Hub",
+        cwd="D:/Nexus98",
         capture_output=True,
         text=True
     )
@@ -21,3 +21,4 @@ def git_status() -> str:
         result.stdout +
         result.stderr
     )
+

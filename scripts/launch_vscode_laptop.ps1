@@ -1,5 +1,5 @@
-param(
-    [string]$WorkspaceFile = 'D:/AI_Model_Hub/Nexus98_Workspace.code-workspace'
+﻿param(
+    [string]$WorkspaceFile = 'D:/Nexus98/Nexus98_Workspace.code-workspace'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -10,3 +10,4 @@ if (Get-Command code -ErrorAction SilentlyContinue) {
 else {
     throw 'VS Code CLI not found on PATH.'
 }
+

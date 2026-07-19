@@ -1,18 +1,49 @@
-﻿from pathlib import Path
+﻿import os
+from pathlib import Path
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 
-IGNORED = {
+IGNORED_DIRS = {
     ".git",
     ".venv",
     "__pycache__",
     "backups",
+    "backup",
     "data",
-    "logs"
+    "logs",
+    "snapshots",
+    "archive",
+    "archives",
+    "rollback",
+    "old",
+    "temp",
+    "tmp",
+    "node_modules",
+    "site-packages",
+    "Packages",
+    "models",
+    "ollama",
 }
 
+
+INCLUDED_EXTENSIONS = {
+    ".json",
+    ".yaml",
+    ".yml",
+    ".toml",
+    ".ini",
+    ".cfg",
+    ".env",
+    ".ps1",
+    ".py",
+    ".md",
+    ".txt",
+}
+
+
+MAX_RESULTS = 100
 
 
 def list_files() -> str:
@@ -23,32 +54,33 @@ def list_files() -> str:
 
     files = []
 
+    for root, dirs, filenames in os.walk(ROOT, topdown=True):
+        dirs[:] = [
+            d for d in dirs
+            if d not in IGNORED_DIRS
+        ]
 
-    for path in ROOT.rglob("*"):
+        root_path = Path(root)
+        rel_root = root_path.relative_to(ROOT)
 
-        if any(
-            part in IGNORED
-            for part in path.parts
-        ):
-            continue
+        for filename in sorted(filenames):
+            target = rel_root / filename
 
+            if any(
+                part in IGNORED_DIRS
+                for part in target.parts
+            ):
+                continue
 
-        if path.is_file():
+            if target.suffix.lower() not in INCLUDED_EXTENSIONS:
+                continue
 
-            files.append(
-                str(
-                    path.relative_to(ROOT)
-                )
-            )
+            files.append(str(target))
 
-
-        if len(files) >= 100:
-
-            break
-
+            if len(files) >= MAX_RESULTS:
+                return "\n".join(files)
 
     return "\n".join(files)
-
 
 
 def read_file(path: str) -> str:
@@ -62,41 +94,29 @@ def read_file(path: str) -> str:
 
     target = ROOT / path
 
+    if any(
+        part in IGNORED_DIRS
+        for part in target.parts
+    ):
+        return f"Path ignored: {path}"
 
     if not target.exists():
-
-        return (
-            f"File not found: {path}"
-        )
-
+        return f"File not found: {path}"
 
     if not target.is_file():
-
-        return (
-            f"Not a file: {path}"
-        )
-
+        return f"Not a file: {path}"
 
     size = target.stat().st_size
 
-
     if size > 50000:
-
-        return (
-            f"File too large: {size} bytes"
-        )
-
+        return f"File too large: {size} bytes"
 
     try:
-
         return target.read_text(
             encoding="utf-8",
             errors="ignore"
         )
-
     except Exception as e:
+        return f"Read error: {e}"
 
-        return (
-            f"Read error: {e}"
-        )
 

@@ -1,6 +1,6 @@
 ﻿from pathlib import Path
 
-path = Path(r"D:\AI_Model_Hub\ui\main_window.py")
+path = Path(r"D:\Nexus98\ui\main_window.py")
 
 text = path.read_text(encoding="utf-8")
 
@@ -98,3 +98,4 @@ path.write_text(
 )
 
 print("Bridge UI patch applied")
+

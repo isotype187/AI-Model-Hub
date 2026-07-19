@@ -6,7 +6,7 @@ from datetime import datetime
 
 SOURCE = Path(r"C:\Users\isoty\.ollama\models")
 TARGET = Path(r"D:\AI\Models\ollama")
-BACKUP_LOG = Path(r"D:\AI_Model_Hub\tools\ollama_manager\migration_log.txt")
+BACKUP_LOG = Path(r"D:\Nexus98\tools\ollama_manager\migration_log.txt")
 
 
 def run(cmd):
@@ -166,3 +166,4 @@ def migrate():
 
 if __name__ == "__main__":
     migrate()
+

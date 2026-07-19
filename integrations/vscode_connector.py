@@ -5,7 +5,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 API = "http://127.0.0.1:8000"
 
@@ -129,3 +129,4 @@ if __name__ == "__main__":
         )
 
     )
+

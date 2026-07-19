@@ -1,11 +1,11 @@
-param(
+﻿param(
     [Parameter(Mandatory = $true)]
     [ValidateSet('desktop', 'laptop')]
     [string]$Role,
 
     [string]$MachineName = '',
-    [string]$WorkspaceRoot = 'D:/AI_Model_Hub',
-    [string]$WorkspaceFile = 'D:/AI_Model_Hub/Nexus98_Workspace.code-workspace'
+    [string]$WorkspaceRoot = 'D:/Nexus98',
+    [string]$WorkspaceFile = 'D:/Nexus98/Nexus98_Workspace.code-workspace'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -85,7 +85,7 @@ else {
     if (-not (Test-Path $launcherPath)) {
         @'
 param(
-    [string]$WorkspaceFile = 'D:/AI_Model_Hub/Nexus98_Workspace.code-workspace'
+    [string]$WorkspaceFile = 'D:/Nexus98/Nexus98_Workspace.code-workspace'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -104,3 +104,4 @@ else {
 }
 
 Write-Host 'VS Code workflow setup completed.' -ForegroundColor Green
+

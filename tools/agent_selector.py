@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 CONFIG = Path(
-    r"D:\AI_Model_Hub\config\models.json"
+    r"D:\Nexus98\config\models.json"
 )
 
 
@@ -85,3 +85,4 @@ if __name__ == "__main__":
     print(
         f"Category:\n{result['category']}"
     )
+

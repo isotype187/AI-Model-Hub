@@ -3,20 +3,20 @@ import json
 
 sys.path.insert(
     0,
-    r"D:\AI_Model_Hub"
+    r"D:\Nexus98"
 )
 
 from core.catalog import sync_catalog
 
 
-OUTPUT = r"D:\AI_Model_Hub\config\models.json"
+OUTPUT = r"D:\Nexus98\config\models.json"
 
 
 def generate():
     models = sync_catalog(True)
 
     data = {
-        "project": "AI_Model_Hub",
+        "project": "Nexus98",
         "version": "1.0.0",
         "models": models
     }
@@ -38,3 +38,4 @@ def generate():
 
 if __name__ == "__main__":
     generate()
+

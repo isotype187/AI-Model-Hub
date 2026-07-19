@@ -12,7 +12,7 @@ import shutil
 import subprocess
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 BACKUP_DIR = ROOT / "backups"
 HISTORY_DIR = ROOT / "history"
@@ -290,7 +290,7 @@ from core.vscode_bridge import VSCodeBridge
 from core.project_engine import ProjectEngine
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 LOG = ROOT / "logs" / "supervisor.log"
 
@@ -648,7 +648,7 @@ from pathlib import Path
 from datetime import datetime
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 LOG = ROOT / "logs" / "routing.log"
 
 
@@ -781,7 +781,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-LOG = Path(r"D:\AI_Model_Hub\logs\startup_crash.log")
+LOG = Path(r"D:\Nexus98\logs\startup_crash.log")
 
 
 def write_log(message):
@@ -1197,7 +1197,7 @@ import json
 import time
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 REQUEST_DIR = ROOT / "bridge" / "requests"
 RESPONSE_DIR = ROOT / "bridge" / "responses"
@@ -7213,3 +7213,4 @@ D:\AI_MODEL_HUB
 +---__pycache__
         engine_test.cpython-314.pyc
         
+

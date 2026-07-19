@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Nexus98_Guardian"
+		}
+	],
+	"settings": {
+		"powershell.cwd": "Nexus98"
+	}
+}

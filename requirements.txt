@@ -4,4 +4,8 @@ psutil
 pynput
 pystray
 Pillow
+flask
 
+autogen-agentchat
+autogen-core
+autogen-ext

@@ -6,9 +6,7 @@ ROOT = Path(r"D:\AI_Model_Hub")
 
 registry = ROOT / "config" / "models.json"
 
-output = Path(
-    r"C:\Users\isoty\.continue\config.yaml"
-)
+output = Path.home() / ".continue" / "config.yaml"
 
 
 data = json.loads(

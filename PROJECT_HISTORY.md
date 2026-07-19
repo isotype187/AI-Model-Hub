@@ -1,4 +1,4 @@
-﻿# AI_Model_Hub Project History
+﻿# Nexus98 Project History
 
 ## Origin
 
@@ -132,3 +132,4 @@ Future retired systems should record:
 - Lessons learned
 
 Experiments are preserved as knowledge, even when they are no longer active.
+

@@ -1,12 +1,12 @@
 {
     "folders": [
         {
-            "name": "AI_Model_Hub",
-            "path": "d:/AI_Model_Hub"
+            "name": "Nexus98",
+            "path": "."
         },
         {
             "name": "Nexus98_Guardian",
-            "path": "d:/Nexus98_Guardian"
+            "path": "../Nexus98_Guardian"
         }
     ],
     "settings": {

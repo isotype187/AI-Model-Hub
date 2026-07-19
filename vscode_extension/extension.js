@@ -2,7 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = "D:/AI_Model_Hub";
+const ROOT = "D:/Nexus98";
 const REQUEST_DIR = path.join(ROOT, "bridge", "requests");
 const RESPONSE_DIR = path.join(ROOT, "bridge", "responses");
 
@@ -74,3 +74,4 @@ module.exports = {
     activate,
     deactivate
 };
+

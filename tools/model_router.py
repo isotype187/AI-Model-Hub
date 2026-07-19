@@ -3,7 +3,7 @@ import subprocess
 from pathlib import Path
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 CONFIG = ROOT / "config" / "models.json"
 
@@ -54,3 +54,4 @@ def scan():
 
 if __name__ == "__main__":
     scan()
+

@@ -7,9 +7,7 @@ print(" AI MODEL HUB ADVANCED HEALTH CHECK")
 print("=" * 60)
 print()
 
-continue_config = Path(
-    r"C:\Users\isoty\.continue\config.yaml"
-)
+continue_config = Path.home() / ".continue" / "config.yaml"
 
 required_models = [
     "qwen3-coder:30b",
@@ -92,9 +90,7 @@ print()
 
 print("=== STORAGE ===")
 
-junction = Path(
-    r"C:\Users\isoty\.ollama\models"
-)
+junction = Path.home() / ".ollama" / "models"
 
 target = Path(
     r"D:\AI\Models\ollama"

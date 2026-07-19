@@ -5,7 +5,7 @@ from pathlib import Path
 from datetime import datetime
 
 
-ROOT = Path(r"D:\AI_Model_Hub")
+ROOT = Path(r"D:\Nexus98")
 
 CONFIG = ROOT / "config" / "models.json"
 
@@ -138,3 +138,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+

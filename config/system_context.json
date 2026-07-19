@@ -1,7 +1,7 @@
 ﻿{
-    "project": "AI_Model_Hub",
+    "project": "Nexus98",
     "description": "Local multi-agent AI development platform",
-    "current_phase": "AutoGen Multi-Agent Foundation",
+    "current_phase": "Phase 6.5 — Documentation Audit Remediation",
     "development_mode": true,
 
     "completed_milestones": [
@@ -13,7 +13,7 @@
 
     "agent_assignments": {
         "architect": {
-            "model": "qwen3:14b",
+            "model": "qwen3:30b",
             "purpose": "architecture planning and system design"
         },
         "coder": {
@@ -53,3 +53,5 @@
         "automated checkpoint synchronization"
     ]
 }
+
+

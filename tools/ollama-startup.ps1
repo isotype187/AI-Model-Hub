@@ -1,6 +1,6 @@
 ﻿$env:OLLAMA_MODELS="D:\AI\Models\ollama"
 
-$Log = "D:\AI_Model_Hub\ollama_startup.log"
+$Log = "D:\Nexus98\ollama_startup.log"
 
 function Write-Log {
     param($Text)
@@ -49,3 +49,4 @@ catch {
 }
 
 Write-Log "Startup check complete"
+
