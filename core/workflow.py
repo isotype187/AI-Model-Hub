@@ -179,14 +179,24 @@ class TaskWorkflow:
 
     def decompose(self, record: WorkflowRecord,
                   subtasks: Optional[List[str]] = None) -> WorkflowRecord:
-        """Decompose the goal into a plan + tasks (advisory, never executed)."""
+        """Decompose the goal into a plan + tasks (advisory, never executed).
+
+        Milestone 3: when a goal is supplied without explicit subtasks, derive
+        goal-aware decomposition steps from the existing intent analysis and
+        the PlanningEngine instead of always using the static default list.
+        Planning remains strictly advisory -- nothing here executes or mutates
+        autonomy state.
+        """
         planner = self.deps.get("planner")
         if planner is None:
             record.blockers.append("planning engine unavailable")
             return record
         plan = planner.create_plan(record.goal)
         record.plan_id = plan.plan_id
-        steps = subtasks or self._DEFAULT_STEPS
+        if subtasks:
+            steps = list(subtasks)
+        else:
+            steps = self._derive_steps(record)
         for step in steps:
             node = planner.add_task(plan.plan_id, step, owner="unassigned",
                                     detail="Advisory task for: " + record.goal)
@@ -195,6 +205,36 @@ class TaskWorkflow:
         record.updated_at = _now()
         self._touch_continuity(record, "decomposed into %d tasks" % len(steps))
         return record
+
+    @staticmethod
+    def _derive_steps(record: WorkflowRecord) -> List[str]:
+        """Goal-aware advisory step derivation (no new planner created).
+
+        Uses the already-computed ``record.intent`` to shape the decomposition,
+        falling back to the static default steps when intent is unavailable.
+        """
+        intent = record.intent or {}
+        intent_type = (intent.get("intent_type") or "unknown").lower()
+        goal = record.goal or ""
+        base = [
+            "Clarify goal and acceptance criteria",
+            "Research relevant context and memory",
+            "Draft implementation plan",
+            "Execute the primary action",
+            "Validate output against acceptance criteria",
+            "Record review and update memory",
+        ]
+        # Tailor the middle of the pipeline to the classified intent.
+        focused = {
+            "action": "Implement the change for: " + goal[:80],
+            "planning": "Design the structure for: " + goal[:80],
+            "review": "Audit and analyze: " + goal[:80],
+            "learning": "Explain and capture knowledge for: " + goal[:80],
+            "information": "Gather and summarize: " + goal[:80],
+        }.get(intent_type, "Execute the primary action for: " + goal[:80])
+        steps = list(base)
+        steps[3] = focused
+        return steps
 
     # ------------------------------------------------------------------
     # Step 3: agent assignment (Router authority, consulted only)

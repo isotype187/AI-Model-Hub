@@ -55,6 +55,54 @@ def current_level() -> int:
     return mapping.get(name, 1)
 
 
+def scope_check(workflow: str) -> dict:
+    """READ-ONLY runtime scope check for the execution gate.
+
+    Returns a decision about whether ``workflow`` may auto-execute at the
+    *current* autonomy level. This helper performs NO state mutation and
+    emits NO audit events -- it is safe to call from the live execution path.
+
+    The trusted-workflow set (e.g. ``vscode_task_send`` at L2) is the only
+    set permitted to proceed without an explicit approval record. Anything
+    outside that set must be held for review rather than auto-executed.
+
+    Returns dict with keys:
+      allowed (bool) - True if auto-execute is permitted at this level,
+      held (bool)    - True if the workflow is outside the trusted set and
+                       must wait for an approval/checkpoint (do NOT execute),
+      reason (str)   - human-readable explanation,
+      level (int)    - current autonomy level,
+      known (bool)   - whether the workflow is in the allowed set.
+    """
+    level = current_level()
+    known = _levels.is_workflow_allowed(workflow, level)
+    if level <= 1:
+        # Below L2 there is no trusted auto-execute set.
+        return {
+            "allowed": False,
+            "held": True,
+            "reason": "autonomy level below trusted (L%d); no auto-execute" % level,
+            "level": level,
+            "known": known,
+        }
+    if known:
+        return {
+            "allowed": True,
+            "held": False,
+            "reason": "workflow '%s' in trusted L%d set" % (workflow, level),
+            "level": level,
+            "known": True,
+        }
+    return {
+        "allowed": False,
+        "held": True,
+        "reason": "workflow '%s' not in trusted set for L%d; hold for approval"
+                  % (workflow, level),
+        "level": level,
+        "known": False,
+    }
+
+
 def _parse_auto_execute(src: str) -> bool:
     m = re.search(r"auto_execute\s*=\s*(True|False)", src)
     return m.group(1) == "True" if m else False

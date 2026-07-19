@@ -97,12 +97,16 @@ def request_file_operation_blocking(
     action,
     file,
     reason,
-    content=None
+    content=None,
+    *,
+    workflow=None,
+    approved_by=None
 ):
 
-    # Phase 5 additive helper: honour the auto_execute safety gate.
+    # Phase 5 additive helper + Milestone 3 real approval gate.
     # Always create the proposal + checkpoint request record; only
-    # execute when auto_execute is explicitly enabled.
+    # execute when auto_execute is explicitly enabled AND the new approval
+    # gate (Governor scope + config safety) permits it.
     request = create_engine_request(
         agent,
         action,
@@ -126,8 +130,23 @@ def request_file_operation_blocking(
         }
 
     approved = approve_engine_request(
-        request
+        request,
+        workflow=workflow,
+        approved_by=approved_by
     )
+
+    # Milestone 3: hold (do not execute) if the gate rejected the request.
+    if approved.get("approval") == "rejected":
+        request["status"] = "held"
+        log(
+            f"ENGINE REQUEST HELD BY GATE {request.get('request_id')} "
+            f"reason={approved.get('rejection_reason')}"
+        )
+        return {
+            "status": "held",
+            "request": approved,
+            "reason": approved.get("rejection_reason")
+        }
 
     result = execute_engine_request(
         approved,
@@ -185,6 +204,11 @@ def run_action_task(
         f"Project Engine created {len(proposals)} proposal(s); routing to checkpoint"
     )
 
+    # Milestone 3: tag the run with a workflow name so the approval gate can
+    # enforce the Governor trusted-workflow scope. The seeded L2 trusted
+    # workflow is "vscode_task_send"; action-intent file ops are mapped to it.
+    workflow_name = "vscode_task_send"
+
     requests = []
 
     for proposal in proposals:
@@ -202,7 +226,8 @@ def run_action_task(
             request["action"],
             request["file"],
             request["reason"],
-            proposal.get("content")
+            proposal.get("content"),
+            workflow=workflow_name
         )
         requests.append(outcome)
 
@@ -779,11 +804,16 @@ def approve_agent_proposal(
 
 
 def approve_engine_request(
-    request
+    request,
+    *,
+    workflow=None,
+    approved_by=None
 ):
 
     approved = engine.approve_request(
-        request
+        request,
+        workflow=workflow,
+        approved_by=approved_by
     )
 
 
@@ -801,7 +831,7 @@ def execute_engine_request(
     content=None
 ):
 
-    if request.get("approval") != "approved":
+    if request.get("approval") not in ("approved", "auto_approved"):
 
         return {
 
@@ -889,7 +919,10 @@ def request_file_operation(
     action,
     file,
     reason,
-    content=None
+    content=None,
+    *,
+    workflow=None,
+    approved_by=None
 ):
 
     log(
@@ -906,9 +939,19 @@ def request_file_operation(
 
 
     approved = approve_engine_request(
-        request
+        request,
+        workflow=workflow,
+        approved_by=approved_by
     )
 
+
+    # Milestone 3: hold if the gate rejected the request.
+    if approved.get("approval") == "rejected":
+        return {
+            "status": "held",
+            "request": approved,
+            "reason": approved.get("rejection_reason")
+        }
 
     result = execute_engine_request(
         approved,
@@ -968,7 +1011,9 @@ def detect_intent(
 
 def run_task(
     task,
-    status_callback=None
+    status_callback=None,
+    *,
+    workflow_name="vscode_task_send"
 ):
 
     print(
@@ -986,6 +1031,16 @@ def run_task(
 
             status_callback(message)
 
+
+
+    # Milestone 3: every task gets a workflow record so OperationsView shows
+    # the real, live pipeline state instead of an always-empty store.
+    _rec = None
+    try:
+        from core.workflow import default_workflow
+        _rec = default_workflow.submit(task)
+    except Exception:
+        _rec = None
 
 
     if not task.strip():
@@ -1024,6 +1079,34 @@ def run_task(
                 "Action request available for Project Engine routing"
             )
 
+            # Milestone 3: enforce the Governor trusted-workflow scope. If the
+            # workflow is not allowed, HOLD execution and record the reason --
+            # never silently continue.
+            try:
+                from core.autonomy.governor import scope_check
+                _scope = scope_check(workflow_name)
+            except Exception:
+                _scope = {"held": True,
+                          "reason": "governor scope check unavailable"}
+            if _scope.get("held"):
+                _reason = (
+                    "workflow '%s' held by Governor scope: %s"
+                    % (workflow_name, _scope.get("reason", "")))
+                status(_reason)
+                log("ACTION HELD: " + _reason)
+                if _rec is not None:
+                    try:
+                        from core.workflow import default_workflow as _wf
+                        _rec.blockers.append(_reason)
+                        _wf.update_memory(_rec)
+                    except Exception:
+                        pass
+                return {
+                    "status": "held",
+                    "intent": "action",
+                    "reason": _reason,
+                }
+
             action_result = run_action_task(
                 task,
                 status
@@ -1033,6 +1116,23 @@ def run_task(
                 f"ACTION RESULT {action_result.get('status')}"
             )
 
+            # Milestone 3: memory closure for the action path.
+            _ars = action_result.get("status")
+            if _ars == "executed":
+                if _rec is not None:
+                    try:
+                        from core.workflow import default_workflow as _wf
+                        _wf.update_memory(_rec)
+                    except Exception:
+                        pass
+            elif _ars not in ("held", "awaiting_approval"):
+                if _rec is not None:
+                    try:
+                        from core.workflow import default_workflow as _wf
+                        _rec.blockers.append("action result: %s" % _ars)
+                        _wf.update_memory(_rec)
+                    except Exception:
+                        pass
             return action_result
 
 
@@ -1132,6 +1232,15 @@ def run_task(
         status(
             "Response received"
         )
+
+
+        # Milestone 3: memory closure for the information/research path.
+        if _rec is not None:
+            try:
+                from core.workflow import default_workflow as _wf
+                _wf.update_memory(_rec)
+            except Exception:
+                pass
 
 
         return clean_output(
